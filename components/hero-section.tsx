@@ -5,14 +5,15 @@ import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import TypewriterEffect from "@/components/typewriter-effect";
 import CodeEditor from "@/components/code-editor";
 import { Mail } from "lucide-react";
+import { useHeroSection } from "@/hooks/ApiCall";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-
+  const getHeroData = useHeroSection();
   useEffect(() => {
     setMounted(true);
   }, []);
-
+  
   return (
     <section
       id="home"
@@ -34,20 +35,13 @@ export default function HeroSection() {
             <div className="text-2xl sm:text-3xl font-semibold text-muted-foreground min-h-[40px]">
               {mounted && (
                 <TypewriterEffect
-                  texts={[
-                    "Full-Stack Developer",
-                    "Frontend Developer",
-                    "Problem Solver",
-                    "Tech Innovator",
-                  ]}
+                text={getHeroData.data?.data[0].title || "Full stack developer"}
                 />
               )}
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Passionate about creating beautiful, functional, and user-friendly
-              applications. I turn ideas into reality with clean code and modern
-              technologies.
+             {getHeroData.data?.data[0].description}
             </p>
 
             {/* <div className="flex flex-wrap gap-4 pt-4">

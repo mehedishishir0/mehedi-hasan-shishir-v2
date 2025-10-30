@@ -1,9 +1,9 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-
-
+import type React from "react";
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import { QueryProvider } from "@/provider/query-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Mehedi Hasan Shishir | Full Stack Developer & JavaScript Expert",
@@ -42,18 +42,18 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        {children}
+        <Toaster />
+        <QueryProvider>{children}</QueryProvider>
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
