@@ -9,6 +9,7 @@ import ReviewsSection from "@/components/reviews-section"
 import TechStackGallery from "@/components/tech-stack-gallery"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
+import GitHubActivityShowcase from "@/components/github-activity-showcase"
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <TimelineSection />
         <ReviewsSection />
         <TechStackGallery />
+        <GitHubActivityShowcase username="meheedishishir0" />
         <ContactSection />
       </main>
       <Footer />
