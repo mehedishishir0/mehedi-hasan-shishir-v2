@@ -7,36 +7,73 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Loader2, Mail, MapPin, Phone } from "lucide-react"
+import { toast } from "sonner"
+import { useMutation } from "@tanstack/react-query"
+
+
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    subject: "",
   })
+
+
+  const contactMutation = useMutation({
+    mutationKey: ["contactus"],
+    mutationFn: async (payloade: { name: string; email: string; message: string; subject: string }) => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/contactus`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+
+          body: JSON.stringify(payloade),
+        }
+      );
+      if (!response.ok) throw new Error("Failed to submit contact us");
+      return response.json();
+    },
+    onSuccess: (data) => {
+      console.log(data.message)
+
+      toast.success(data.message || "Contact us sent successfully")
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Contact us sent successfully")
+    },
+  });
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      subject: formData.subject
+    }
+    contactMutation.mutate(data)
   }
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "your.email@example.com",
+      value: "mehedihasanshishir.info@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+880 1771806597",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Dhaka, Bangladesh",
     },
   ]
 
@@ -55,10 +92,6 @@ export default function ContactSection() {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">Let&apos;s talk about your project</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-                Feel free to reach out!
-              </p>
             </div>
 
             <div className="space-y-4">
@@ -68,7 +101,7 @@ export default function ContactSection() {
                     <item.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
+                    {/* <p className="text-sm text-muted-foreground">{item.label}</p> */}
                     <p className="font-medium">{item.value}</p>
                   </div>
                 </Card>
@@ -85,6 +118,7 @@ export default function ContactSection() {
                 </label>
                 <Input
                   id="name"
+                  className="py-6 rounded-sm"
                   placeholder="Your name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -98,10 +132,24 @@ export default function ContactSection() {
                 </label>
                 <Input
                   id="email"
+                  className="py-6 rounded-sm"
                   type="email"
                   placeholder="your.email@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Subject
+                </label>
+                <Input
+                  id="subject"
+                  className="py-6 rounded-sm"
+                  placeholder="Subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   required
                 />
               </div>
@@ -112,8 +160,9 @@ export default function ContactSection() {
                 </label>
                 <Textarea
                   id="message"
+                  className="py-6 h-40 rounded-sm"
                   placeholder="Tell me about your project..."
-                  rows={5}
+
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
@@ -121,7 +170,7 @@ export default function ContactSection() {
               </div>
 
               <Button type="submit" className="w-full" size="lg">
-                Send Message
+                Send Message {contactMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               </Button>
             </form>
           </Card>

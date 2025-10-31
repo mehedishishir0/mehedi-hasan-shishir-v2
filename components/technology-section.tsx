@@ -2,21 +2,41 @@
 
 import { Card } from "@/components/ui/card";
 import { Marquee } from "./ui/marquee";
-
-const technologies = [
-  { name: "React", logo: "⚛️", description: "UI Library" },
-  { name: "Next.js", logo: "▲", description: "React Framework" },
-  { name: "TypeScript", logo: "TS", description: "Type Safety" },
-  { name: "Node.js", logo: "🟢", description: "Backend Runtime" },
-  { name: "Tailwind CSS", logo: "🎨", description: "Styling" },
-  { name: "PostgreSQL", logo: "🐘", description: "Database" },
-  { name: "MongoDB", logo: "🍃", description: "NoSQL DB" },
-  { name: "Docker", logo: "🐳", description: "Containerization" },
-];
+import Image from "next/image";
+import { useTechnologyLove } from "@/hooks/ApiCall";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function TechnologySection() {
-  const firstRow = technologies.slice(0, technologies.length / 2);
-  const secondRow = technologies.slice(technologies.length / 2);
+  const { data, isLoading, isError } = useTechnologyLove();
+
+  if (isLoading) {
+    return (
+      <section className="py-20 text-center">
+        <h2 className="text-3xl font-bold mb-4">Technologies I Love</h2>
+        <p className="text-muted-foreground">Loading technologies...</p>
+        <div className="flex justify-center gap-4 mt-8">
+          {[...Array(6)].map((_, i) => (
+            <Skeleton key={i} className="h-40 w-64 rounded-xl bg-gray-300" />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (isError || !data?.data) {
+    return (
+      <section className="py-20 text-center">
+        <h2 className="text-3xl font-bold mb-4">Technologies I Love</h2>
+        <p className="text-red-500">Failed to load technologies.</p>
+      </section>
+    );
+  }
+
+  const technologies = data.data;
+
+  // Split into two marquee rows for better visual balance
+  const firstRow = technologies.slice(0, Math.ceil(technologies.length / 2));
+  const secondRow = technologies.slice(Math.ceil(technologies.length / 2));
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -31,16 +51,23 @@ export default function TechnologySection() {
           </p>
         </div>
 
-        {/* ✅ Dual Magic Marquees */}
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          {/* Top Row — moves LEFT → RIGHT */}
-          <Marquee reverse pauseOnHover className="[--duration:20s]">
-            {firstRow.map((tech, index) => (
+        {/* ✅ Dual Marquees */}
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden space-y-8">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {firstRow.map((tech) => (
               <Card
-                key={index}
-                className="flex-shrink-0 w-64 p-6 m-2 hover:shadow-xl transition-shadow"
+                key={tech._id}
+                className="flex-shrink-0 w-64 p-6 m-2 hover:shadow-xl transition-shadow text-center"
               >
-                <div className="text-5xl mb-4">{tech.logo}</div>
+                <div className="flex justify-center mb-4">
+                  <Image
+                    src={tech.image.url}
+                    alt={tech.name}
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-2">{tech.name}</h3>
                 <p className="text-sm text-muted-foreground">
                   {tech.description}
@@ -49,7 +76,7 @@ export default function TechnologySection() {
             ))}
           </Marquee>
 
-          {/* Edge gradient fades */}
+          {/* Edge gradients */}
           <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r" />
           <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l" />
         </div>
