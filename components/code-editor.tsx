@@ -103,16 +103,15 @@ function tokenizeCode(code: string, language: "javascript" | "cpp") {
       }
     }
 
-    if (lineIndex < lines.length - 1) tokens.push({ text: "\n", color: "#D4D4D4" });
+    if (lineIndex < lines.length - 1)
+      tokens.push({ text: "\n", color: "#D4D4D4" });
   });
 
   return tokens;
 }
 
 export default function CodeEditor() {
-  const [activeTab, setActiveTab] = useState<"javascript" | "cpp">(
-    "javascript"
-  );
+  const [activeTab, setActiveTab] = useState<"javascript" | "cpp">("javascript");
   const [displayedTokens, setDisplayedTokens] = useState<
     Array<{ text: string; color: string }>
   >([]);
@@ -140,7 +139,7 @@ export default function CodeEditor() {
       const timeout = setTimeout(() => {
         setDisplayedTokens((prev) => [...prev, allTokens[currentIndex]]);
         setCurrentIndex((prev) => prev + 1);
-      }, 50);
+      }, 40);
 
       return () => clearTimeout(timeout);
     } else if (currentIndex >= allTokens.length) {
@@ -149,21 +148,21 @@ export default function CodeEditor() {
   }, [currentIndex, allTokens, isTyping]);
 
   return (
-    <Card className="bg-card border-border p-0 overflow-hidden shadow-xl">
-      {/* Editor Header */}
-      <div className="bg-muted border-b border-border px-4 py-2 flex items-center gap-2">
+    <Card className="bg-card border-border p-0 overflow-hidden shadow-xl w-full max-w-4xl mx-auto rounded-2xl">
+      {/* Header */}
+      <div className="bg-muted border-b border-border px-4 py-2 flex flex-wrap items-center gap-3 justify-between sm:justify-start">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
           <div className="w-3 h-3 rounded-full bg-green-500" />
         </div>
 
-        <div className="flex gap-1 ml-4">
+        <div className="flex gap-1 ml-2 sm:ml-4">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setActiveTab("javascript")}
-            className={`h-8 px-3 hover:bg-gray-50 hover:text-black cursor-pointer text-xs font-mono transition-colors ${
+            className={`h-8 px-3 text-xs sm:text-sm font-mono transition-colors ${
               activeTab === "javascript"
                 ? "bg-card text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -175,7 +174,7 @@ export default function CodeEditor() {
             variant="ghost"
             size="sm"
             onClick={() => setActiveTab("cpp")}
-            className={`h-8 hover:bg-gray-50 hover:text-black cursor-pointer px-3 text-xs font-mono transition-colors ${
+            className={`h-8 px-3 text-xs sm:text-sm font-mono transition-colors ${
               activeTab === "cpp"
                 ? "bg-card text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -187,7 +186,7 @@ export default function CodeEditor() {
       </div>
 
       {/* Code Content */}
-      <div className="px-6 font-mono text-sm bg-card min-h-[400px]">
+      <div className="px-3 sm:px-6 py-3 sm:py-4 font-mono text-xs sm:text-sm bg-card min-h-[300px] sm:min-h-[400px] overflow-x-auto whitespace-pre-wrap">
         <pre className="leading-relaxed">
           <code>
             {displayedTokens.map((token, index) => (
@@ -195,9 +194,7 @@ export default function CodeEditor() {
                 {token.text}
               </span>
             ))}
-            {isTyping && (
-              <span className="animate-pulse text-red-500">|</span>
-            )}
+            {isTyping && <span className="animate-pulse text-red-500">|</span>}
           </code>
         </pre>
       </div>

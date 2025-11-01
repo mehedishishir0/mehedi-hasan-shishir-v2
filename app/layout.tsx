@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { QueryProvider } from "@/provider/query-provider";
 import { Toaster } from "sonner";
+import LenisSmoothScroll from "@/components/LenisSmoothScroll";
 
 export const metadata: Metadata = {
   title: "Mehedi Hasan Shishir | Full Stack Developer & JavaScript Expert",
@@ -51,7 +52,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans antialiased`}>
         <Toaster />
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <LenisSmoothScroll />
+          {children}
+        </QueryProvider>
         <Analytics />
       </body>
     </html>
