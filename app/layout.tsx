@@ -53,7 +53,7 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         <Toaster />
         <QueryProvider>
-          <LenisSmoothScroll />
+          {/* <LenisSmoothScroll /> */}
           {children}
         </QueryProvider>
         <Analytics />
