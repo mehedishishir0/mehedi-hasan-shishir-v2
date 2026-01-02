@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryProvider } from "@/provider/query-provider";
 import { Toaster } from "sonner";
 import LenisSmoothScroll from "@/components/LenisSmoothScroll";
+import FloatingReviewButton from "@/components/floating-review-button";
 
 export const metadata: Metadata = {
   title: "Mehedi Hasan Shishir | Full Stack Developer & JavaScript Expert",
@@ -28,16 +29,8 @@ export const metadata: Metadata = {
     title: "Mehedi Hasan Shishir | Full Stack Developer Portfolio",
     description:
       "Explore the professional portfolio of Mehedi Hasan Shishir — expert in JavaScript, React, Next.js, and .NET technologies.",
-    url: "https://yourdomain.com",
+    url: "https://mehedi-hasan-shishir.vercel.app",
     siteName: "Mehedi Hasan Shishir Portfolio",
-    images: [
-      {
-        url: "https://yourdomain.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Mehedi Hasan Shishir Portfolio Preview",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -55,6 +48,7 @@ export default function RootLayout({
         <QueryProvider>
           {/* <LenisSmoothScroll /> */}
           {children}
+          <FloatingReviewButton/>
         </QueryProvider>
         <Analytics />
       </body>
