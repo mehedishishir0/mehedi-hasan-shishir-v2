@@ -24,7 +24,7 @@ export default function Home() {
         <TimelineSection />
         <ReviewsSection />
         <TechStackGallery />
-        <GitHubActivityShowcase username="meheedishishir0" />
+        <GitHubActivityShowcase username="mehedishishir0" />
         <ContactSection />
       </main>
       <Footer />
