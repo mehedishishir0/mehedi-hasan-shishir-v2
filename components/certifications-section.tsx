@@ -27,7 +27,7 @@ const certificates = [
 
 export default function CertificationsSection() {
   return (
-    <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="certifications" className="py-20 px-4 sm:px-0 ">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Certifications</h2>
