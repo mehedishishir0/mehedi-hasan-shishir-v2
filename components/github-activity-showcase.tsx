@@ -331,11 +331,11 @@ const ContributionGraph = ({ contributions }: { contributions: ContributionDay[]
       <div className="mb-6 flex items-center justify-between">
         <h3 className="flex items-center gap-2 font-semibold text-slate-900">
           <Calendar className="h-4 w-4 text-emerald-500" />
-          Contribution History
+          Contribution History 
         </h3>
         <span className="text-xs text-slate-400 italic">Last 12 months</span>
       </div>
-      <div className="flex gap-[4px] h-full  overflow-x-auto pb-4 custom-scrollbar">
+      <div className="flex md:gap-[4px] lg:gap-[8px] h-full  overflow-x-auto pb-4 custom-scrollbar">
         {weeks.map((week, i) => (
           <div key={i} className="flex flex-col gap-[3px]">
             {week.map((day, j) => (
@@ -397,8 +397,8 @@ export default function GitHubActivityShowcase({ username }: { username: string 
   if (isError || !data) return <div className="py-24 text-center text-red-400">Failed to sync with GitHub.</div>
 
   return (
-    <section className="bg-muted/30 py-24 selection:bg-emerald-100">
-      <div className="container mx-auto max-w-7xl px-6">
+    <section className="bg-muted/30 py-24 px-4 sm:px-6 selection:bg-emerald-100">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-1.5 border border-slate-100">

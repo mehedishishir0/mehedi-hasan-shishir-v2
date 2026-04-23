@@ -87,7 +87,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
             <div>

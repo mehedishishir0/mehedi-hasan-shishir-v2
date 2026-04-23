@@ -49,7 +49,7 @@ export default function TimelineSection() {
 
   return (
     <section ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="container mx-auto">
+      <div className="container  mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">My Journey</h2>
@@ -58,7 +58,7 @@ export default function TimelineSection() {
           </p>
         </div>
 
-        <div ref={timelineRef} className="max-w-5xl mx-auto relative">
+        <div ref={timelineRef} className=" mx-auto relative">
           {/* Center Line (Desktop) */}
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2 hidden md:block">
             <div
