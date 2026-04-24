@@ -1,54 +1,60 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Briefcase } from "lucide-react"
-import { useTimeLine } from "@/hooks/ApiCall"
-import { Skeleton } from "@/components/ui/skeleton"
+import { useEffect, useRef, useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Briefcase } from "lucide-react";
+import { useTimeLine } from "@/hooks/ApiCall";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function TimelineSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [lineHeight, setLineHeight] = useState(0)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const timelineRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const [lineHeight, setLineHeight] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
-  const { data, isLoading } = useTimeLine()
-  const timelineData = Array.isArray(data?.data) ? data.data : []
+  const { data, isLoading } = useTimeLine();
+  const timelineData = Array.isArray(data?.data) ? data.data : [];
 
   // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
+      { threshold: 0.1 },
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Scroll-based line height
   useEffect(() => {
     const handleScroll = () => {
-      if (!timelineRef.current) return
-      const timelineTop = timelineRef.current.getBoundingClientRect().top
-      const timelineHeight = timelineRef.current.offsetHeight
-      const windowHeight = window.innerHeight
+      if (!timelineRef.current) return;
+      const timelineTop = timelineRef.current.getBoundingClientRect().top;
+      const timelineHeight = timelineRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
       const scrollProgress = Math.max(
         0,
-        Math.min(1, (windowHeight - timelineTop) / (timelineHeight + windowHeight))
-      )
-      setLineHeight(scrollProgress * 100)
-    }
+        Math.min(
+          1,
+          (windowHeight - timelineTop) / (timelineHeight + windowHeight),
+        ),
+      );
+      setLineHeight(scrollProgress * 100);
+    };
 
     if (isVisible) {
-      window.addEventListener("scroll", handleScroll)
-      handleScroll()
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
     }
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [isVisible])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isVisible]);
 
   return (
-    <section ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+    <section
+      ref={sectionRef}
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30"
+    >
       <div className="container  mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,104 +83,114 @@ export default function TimelineSection() {
 
           {/* Timeline Items */}
           <div className="space-y-12">
-            {isLoading
-              ? Array.from({ length: 3 }).map((_, i) => {
-                  const isLeft = i % 2 === 0
-                  return (
+            {isLoading ? (
+              Array.from({ length: 3 }).map((_, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <div
+                    key={i}
+                    className={`relative ${
+                      isLeft
+                        ? "md:pr-[calc(50%+2rem)] md:text-left"
+                        : "md:pl-[calc(50%+2rem)] md:text-left"
+                    } pl-20 md:pl-0`}
+                  >
+                    {/* Icon */}
                     <div
-                      key={i}
-                      className={`relative ${
-                        isLeft
-                          ? "md:pr-[calc(50%+2rem)] md:text-left"
-                          : "md:pl-[calc(50%+2rem)] md:text-left"
-                      } pl-20 md:pl-0`}
-                    >
-                      {/* Icon */}
-                      <div
-                        className={`absolute top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center z-10`}
-                        style={{
-                          transform: "scale(1)",
-                        }}
-                      />
+                      className={`absolute top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center z-10`}
+                      style={{
+                        transform: "scale(1)",
+                      }}
+                    />
 
-                      {/* Skeleton Card */}
-                      <Card className="p-6">
-                        <div
-                          className={`flex flex-col gap-2 ${
-                            isLeft ? "md:items-end" : "md:items-start"
-                          } items-start`}
-                        >
-                          <Skeleton className="h-4 w-32 bg-gray-400 animate-pulse" />
-                          <Skeleton className="h-6 w-64 bg-gray-400 animate-pulse" />
-                          <Skeleton className="h-4 w-48 bg-gray-400 animate-pulse" />
-                          <Skeleton className="h-20 w-full bg-gray-400  animate-pulse" />
-                        </div>
-                      </Card>
-                    </div>
-                  )
-                })
-              : timelineData.length > 0
-              ? timelineData.map((item: any, index: number) => {
-                  const isLeft = index % 2 === 0
-                  const isItemVisible = lineHeight > (index / timelineData.length) * 100
-
-                  return (
-                    <div
-                      key={item._id || index}
-                      className={`relative ${
-                        isLeft
-                          ? "md:pr-[calc(50%+2rem)] md:text-left"
-                          : "md:pl-[calc(50%+2rem)] md:text-left"
-                      } pl-20 md:pl-0`}
-                    >
-                      {/* Icon */}
+                    {/* Skeleton Card */}
+                    <Card className="p-6">
                       <div
-                        className={`absolute top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center z-10 transition-all duration-500 ${
-                          isItemVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                        } ${
-                          isLeft
-                            ? "md:right-[calc(50%-1.25rem)] left-[1.25rem] md:left-auto"
-                            : "md:left-[calc(50%-1.25rem)] left-[1.25rem]"
-                        }`}
+                        className={`flex flex-col gap-2 ${
+                          isLeft ? "md:items-end" : "md:items-start"
+                        } items-start`}
                       >
-                        <Briefcase className="h-5 w-5 text-primary-foreground" />
+                        <Skeleton className="h-4 w-32 bg-gray-400 animate-pulse" />
+                        <Skeleton className="h-6 w-64 bg-gray-400 animate-pulse" />
+                        <Skeleton className="h-4 w-48 bg-gray-400 animate-pulse" />
+                        <Skeleton className="h-20 w-full bg-gray-400  animate-pulse" />
                       </div>
+                    </Card>
+                  </div>
+                );
+              })
+            ) : timelineData.length > 0 ? (
+              timelineData.map((item: any, index: number) => {
+                const isLeft = index % 2 === 0;
+                const isItemVisible =
+                  lineHeight > (index / timelineData.length) * 100;
 
-                      {/* Card */}
-                      <Card
-                        className={`p-6 hover:shadow-lg transition-all duration-500 ${
-                          isItemVisible
-                            ? "opacity-100 translate-x-0"
-                            : `opacity-0 ${isLeft ? "md:-translate-x-8" : "md:translate-x-8"} -translate-x-8`
-                        }`}
-                      >
-                        <div
-                          className={`flex flex-col gap-2 ${
-                            isLeft ? "md:items-end" : "md:items-start"
-                          } items-start`}
-                        >
-                          <span className="text-sm text-primary w-full font-semibold">
-                            {new Date(item.date).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "long",
-                            })}
-                          </span>
-                          <h3 className="text-xl font-bold w-full">{item.title}</h3>
-                          <p className="text-primary/80 w-full font-medium mb-3">{item.subTitle}</p>
-                          <p className="text-muted-foreground whitespace-pre-line">{item.content}</p>
-                        </div>
-                      </Card>
+                return (
+                  <div
+                    key={item._id || index}
+                    className={`relative ${
+                      isLeft
+                        ? "md:pr-[calc(50%+2rem)] md:text-left"
+                        : "md:pl-[calc(50%+2rem)] md:text-left"
+                    } pl-20 md:pl-0`}
+                  >
+                    {/* Icon */}
+                    <div
+                      className={`absolute top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center z-10 transition-all duration-500 ${
+                        isItemVisible
+                          ? "scale-100 opacity-100"
+                          : "scale-0 opacity-0"
+                      } ${
+                        isLeft
+                          ? "md:right-[calc(50%-1.25rem)] left-[1.25rem] md:left-auto"
+                          : "md:left-[calc(50%-1.25rem)] left-[1.25rem]"
+                      }`}
+                    >
+                      <Briefcase className="h-5 w-5 text-primary-foreground" />
                     </div>
-                  )
-                })
-              : (
-                <p className="text-center text-muted-foreground py-10">
-                  No timeline data available.
-                </p>
-              )}
+
+                    {/* Card */}
+                    <Card
+                      className={`p-6 hover:shadow-lg transition-all duration-500 ${
+                        isItemVisible
+                          ? "opacity-100 translate-x-0"
+                          : `opacity-0 ${isLeft ? "md:-translate-x-8" : "md:translate-x-8"} -translate-x-8`
+                      }`}
+                    >
+                      <div
+                        className={`flex flex-col gap-2 ${
+                          isLeft ? "md:items-end" : "md:items-start"
+                        } items-start`}
+                      >
+                        <span className="text-sm text-primary w-full font-semibold">
+                          {new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                          })}
+                        </span>
+                        <h3 className="text-xl font-bold w-full">
+                          {item.title}
+                        </h3>
+                        <p className="text-primary/80 w-full font-medium mb-3">
+                          {item.subTitle}
+                        </p>
+                        <p
+                          className="text-muted-foreground whitespace-pre-line"
+                          dangerouslySetInnerHTML={{ __html: item.content }}
+                        ></p>
+                      </div>
+                    </Card>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-center text-muted-foreground py-10">
+                No timeline data available.
+              </p>
+            )}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
