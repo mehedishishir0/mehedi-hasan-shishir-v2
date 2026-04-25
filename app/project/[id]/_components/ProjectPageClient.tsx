@@ -43,19 +43,7 @@ export default function ProjectDetailsPage({ id }: { id: string }) {
     const mainImage = project.image?.[activeImageIndex]?.url || "/placeholder.svg"
 
     return (
-        <main className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/5">
-            {/* Header */}
-            <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <Link href="/">
-                        <Button variant="ghost" size="sm" className="hover:bg-primary/10">
-                            <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back
-                        </Button>
-                    </Link>
-                </div>
-            </header>
-
+        <main className="min-h-screen mt-10 bg-gradient-to-b from-background via-background to-secondary/5">
             {/* Main Content */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="mb-12">

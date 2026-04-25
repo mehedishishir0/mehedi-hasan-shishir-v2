@@ -32,7 +32,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-0 ">
         <div className="flex items-center justify-between h-16">
-          <a href="#home" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+          <a href="/#home" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
             M.H SHISHIR
           </a>
 

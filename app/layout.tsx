@@ -6,6 +6,8 @@ import { QueryProvider } from "@/provider/query-provider";
 import { Toaster } from "sonner";
 import LenisSmoothScroll from "@/components/LenisSmoothScroll";
 import FloatingReviewButton from "@/components/floating-review-button";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Mehedi Hasan Shishir | Full Stack Developer & JavaScript Expert",
@@ -47,7 +49,9 @@ export default function RootLayout({
         <Toaster />
         <QueryProvider>
           {/* <LenisSmoothScroll /> */}
+              <Navbar/>
           {children}
+                <Footer/>
           <FloatingReviewButton/>
         </QueryProvider>
         <Analytics />
