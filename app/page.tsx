@@ -8,6 +8,7 @@ import ReviewsSection from "@/components/reviews-section";
 import TechStackGallery from "@/components/tech-stack-gallery";
 import ContactSection from "@/components/contact-section";
 import GitHubActivityShowcase from "@/components/github-activity-showcase";
+import AllBlogsPage from "./blogs/_components/allBlogs";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <ProjectsSection />
         <CertificationsSection />
         <TimelineSection />
+        <AllBlogsPage limitgst={6}/>
         <ReviewsSection />
         <TechStackGallery />
         <GitHubActivityShowcase username="mehedishishir0" />

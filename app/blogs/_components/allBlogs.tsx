@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react";
 
-export default function AllBlogsPage() {
+export default function AllBlogsPage({limitgst}:{limitgst?:Number}) {
   const [page, setPage] = useState(1);
-  const limit = 18;
+  const limit = limitgst || 18;
 
   const { data: blogsData, isLoading } = useQuery({
     queryKey: ["blogs", page],
@@ -79,7 +79,7 @@ export default function AllBlogsPage() {
         )}
 
         {/* Pagination */}
-        {meta && meta.totalPages > 1 && (
+        {meta && !limitgst && meta.totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-12">
             <Button
               variant="outline"
