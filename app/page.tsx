@@ -9,6 +9,7 @@ import TechStackGallery from "@/components/tech-stack-gallery";
 import ContactSection from "@/components/contact-section";
 import GitHubActivityShowcase from "@/components/github-activity-showcase";
 import AllBlogsPage from "./blogs/_components/allBlogs";
+// import PortfolioFeatureSection from "@/components/PortfolioFeatureSection";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <TechStackGallery />
         <GitHubActivityShowcase username="mehedishishir0" />
         <ContactSection />
+        {/* <PortfolioFeatureSection/> */}
       </main>
     </div>
   );
