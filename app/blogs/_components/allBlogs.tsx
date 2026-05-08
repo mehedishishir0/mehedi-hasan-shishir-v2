@@ -146,9 +146,9 @@ export default function AllBlogsPage({ limitgst }: { limitgst?: number }) {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-20"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold tracking-widest text-blue-400 uppercase mb-4">
+          {/* <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold tracking-widest text-blue-400 uppercase mb-4">
             <BookOpen className="w-3.5 h-3.5" /> My Journal
-          </span>
+          </span> */}
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white tracking-tight">
             Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Insights</span>
           </h2>

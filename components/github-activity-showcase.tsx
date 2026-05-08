@@ -401,13 +401,13 @@ export default function GitHubActivityShowcase({ username }: { username: string 
             whileInView={{ opacity: 1, y: 0 }}
             className="mb-20 flex flex-col items-center text-center"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-4 py-2 border border-blue-500/20">
+          {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-4 py-2 border border-blue-500/20">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Live Octokit API Feed</span>
-          </div>
+          </div> */}
           <h2 className="text-4xl sm:text-6xl font-black mb-6 text-white tracking-tighter">
             Open Source <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Footprint.</span>
           </h2>
