@@ -287,7 +287,7 @@ const StatCard = ({ icon: Icon, label, value }: any) => (
     whileHover={{ y: -5 }}
     transition={{ type: "spring", stiffness: 300 }}
   >
-    <Card className="group relative overflow-hidden border-white/10 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-sm transition-all hover:border-blue-500/50">
+    <Card className="group relative overflow-hidden  border-white/10 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-sm transition-all hover:border-blue-500/50">
       <div className="flex items-center justify-between">
         <div className="z-10">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em]">{label}</p>
@@ -320,7 +320,7 @@ const ContributionGraph = ({ contributions }: { contributions: ContributionDay[]
         </h3>
         <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Last 12 Months</span>
       </div>
-      <div className="flex gap-[4px] md:gap-[6px] lg:gap-[6px] h-full overflow-x-auto pb-4 ">
+      <div className="flex gap-[4px] md:gap-[6px] lg:gap-[6px] h-full hide-scrollbar overflow-x-auto pb-4 ">
         {weeks.map((week, i) => (
           <div key={i} className="flex flex-col gap-[4px] md:gap-[6px]">
             {week.map((day, j) => (
@@ -389,7 +389,7 @@ export default function GitHubActivityShowcase({ username }: { username: string 
   if (isError || !data) return <div className="py-24 text-center text-red-400 font-bold uppercase tracking-widest">Failed to sync with GitHub.</div>
 
   return (
-    <section className="relative bg-[#030712] py-24 px-4 sm:px-6 overflow-hidden">
+    <section className="relative bg-[#030712] py-24 px-4 sm:px-6 overflow-hidden ">
       {/* Decorative Glows */}
       <div className="absolute top-0 right-0 h-[500px] w-[500px] bg-blue-600/5 blur-[120px] rounded-full -z-10" />
       <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-emerald-600/5 blur-[120px] rounded-full -z-10" />

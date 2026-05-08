@@ -196,16 +196,16 @@ export default function ProjectDetailsPage({ id }: { id: string }) {
             {/* Background Atmosphere */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#112032]/20 blur-[150px] rounded-full -z-10" />
             
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 relative z-10">
                 {/* Massive Header Section (Image Style) */}
-                <div className="mb-20 text-center lg:text-left">
-                    <motion.div
+                <div className="mb-20 text-center lg:text-left ">
+                    {/* <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/5 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-6"
                     >
                         <Layout className="h-3 w-3" /> Case Study
-                    </motion.div>
+                    </motion.div> */}
                     
                     <motion.h1 
                         initial={{ opacity: 0, y: 30 }}

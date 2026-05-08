@@ -88,13 +88,13 @@
 //   )
 // }
 
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -128,17 +128,26 @@ export default function Navbar() {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           className={`relative flex items-center justify-between px-6 h-16 rounded-2xl transition-all duration-300 ${
-            isScrolled 
-              ? "bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]" 
+            isScrolled
+              ? "bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
               : "bg-transparent border-transparent"
           }`}
         >
           {/* Logo with Gradient Text */}
-          <a 
-            href="/#home" 
+          <a
+            href="/#home"
             className="text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity"
           >
-            M.H <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">SHISHIR</span>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="inline-block mr-2"
+            />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+              SHISHIR
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -153,11 +162,9 @@ export default function Navbar() {
                 <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
               </a>
             ))}
-            
             <div className="ml-4 h-6 w-[1px] bg-white/10" /> {/* Divider */}
-            
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="ml-4 bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white border-none shadow-lg shadow-blue-500/20 active:scale-95 transition-all"
             >
               Hire Me
