@@ -408,8 +408,8 @@ export default function GitHubActivityShowcase({ username }: { username: string 
             </span>
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Live Octokit API Feed</span>
           </div> */}
-          <h2 className="text-4xl sm:text-6xl font-black mb-6 text-white tracking-tighter">
-            Open Source <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Footprint.</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+            Open Source Footprint.
           </h2>
         </motion.div>
 

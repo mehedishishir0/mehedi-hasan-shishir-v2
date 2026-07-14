@@ -274,11 +274,9 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white tracking-tight">
-              About{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
-                Me
-              </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+              About{" "} Me
+           
             </h2>
 
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
@@ -373,12 +371,12 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-white">
+              <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
                 {aboutData?.title ||
                   "Full-Stack Developer & Creative Thinker"}
               </h3>
 
-              <p className="text-gray-400 text-lg leading-relaxed">
+              <p className="text-gray-400 text-lg leading-relaxed" >
                 {aboutData?.description ||
                   "With over 1 years of experience in web development, I specialize in building modern, responsive applications that solve real-world problems."}
               </p>

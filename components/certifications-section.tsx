@@ -46,8 +46,7 @@ export default function CertificationsSection() {
           {/* <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest text-blue-400 uppercase mb-4">
             <Award className="w-3.5 h-3.5" /> Achievements
           </span> */}
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white tracking-tight">
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Certifications</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40"> Professional Certifications
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             A testament to my commitment to continuous learning and technical mastery.

@@ -99,8 +99,7 @@ export default function ProjectsSection() {
 
       
       <div className="pt-24 pb-10 text-center px-4 sticky top-0 z-0">
-        <h2 className="text-4xl sm:text-6xl font-bold text-white mb-6">
-          Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Projects</span>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40"> Featured Projects
         </h2>
       </div>
 

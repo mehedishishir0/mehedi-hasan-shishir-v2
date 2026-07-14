@@ -67,12 +67,12 @@ export default function HeroSection() {
                 Welcome to my portfolio
               </motion.p>
               <motion.h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance"
+              className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                Hi, I&apos;m <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">M.H SHISHIR</span>
+                Hi, I&apos;m  M.H SHISHIR
               </motion.h1>
             </div>
 

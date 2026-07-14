@@ -49,6 +49,7 @@ import ReviewsSection from "@/components/reviews-section";
 import ContactSection from "@/components/contact-section";
 import GitHubActivityShowcase from "@/components/github-activity-showcase";
 import AllBlogsPage from "./blogs/_components/allBlogs";
+import TechnologySection1 from "@/components/TechnologySection";
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -83,7 +84,8 @@ export default function Home() {
         </section>
 
         <section data-scroll-section data-scroll-speed="2">
-          <TechnologySection />
+          {/* <TechnologySection /> */}
+        <TechnologySection1/>
         </section>
 
         <section data-scroll-section data-scroll-speed="2">

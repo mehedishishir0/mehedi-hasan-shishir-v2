@@ -109,7 +109,7 @@ export default function ReviewsSection() {
   return (
     <section id="reviews" className="relative py-24 bg-[#030712] overflow-hidden">
       <div className="container mx-auto px-4 mb-16 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">Client Reviews</h2>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Client Reviews</h2>
         <p className="text-gray-400">What people say about working with me</p>
       </div>
 

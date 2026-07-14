@@ -266,9 +266,9 @@ export default function ContactSection() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl font-bold mb-6 text-white tracking-tight"
+           className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40"
           >
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Touch</span>
+            Get In Touch
           </motion.h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             Have a project in mind? Let&apos;s work together to create something amazing.

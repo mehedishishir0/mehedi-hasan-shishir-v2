@@ -30,7 +30,7 @@ export default function TimelineSection() {
     <section id="about" className="relative py-24 px-4 bg-[#030712]">
       <div className="container  mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold text-white mb-4">My  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Journey</span></h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">My  Journey</h2>
           <p className="text-gray-400">Professional experience and milestones</p>
         </div>
 
