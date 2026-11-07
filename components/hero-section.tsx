@@ -15,24 +15,28 @@ const socialLinks = [
     href: "https://facebook.com/mehedishishir0",
     bgColor: "bg-blue-600",
     hoverBgColor: "hover:bg-blue-700",
+    label: "Facebook - Mehedi Hasan Shishir",
   },
   {
     icon: FaLinkedinIn,
     href: "https://www.linkedin.com/in/mehedi-hasan-shishir0",
     bgColor: "bg-blue-500",
     hoverBgColor: "hover:bg-blue-600",
+    label: "LinkedIn - Mehedi Hasan Shishir",
   },
   {
     icon: Mail,
     href: "mailto:mehedihasanshishir.info@gmail.com",
     bgColor: "bg-red-500",
     hoverBgColor: "hover:bg-red-600",
+    label: "Email Mehedi Hasan Shishir",
   },
   {
     icon: FaGithub,
     href: "https://github.com/mehedishishir0",
     bgColor: "bg-gray-800",
     hoverBgColor: "hover:bg-gray-900",
+    label: "GitHub - mehedishishir0",
   },
 ];
 
@@ -73,14 +77,17 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 Hi, I&apos;m  M.H SHISHIR
+                <span className="sr-only"> - Mehedi Hasan Shishir | Full Stack Developer Portfolio</span>
               </motion.h1>
             </div>
 
             <div className="text-2xl sm:text-3xl font-semibold text-muted-foreground min-h-[40px]">
-              {mounted && (
+              {mounted ? (
                 <TypewriterEffect
-                text={getHeroData.data?.data[0].title || "Full stack developer"}
+                  text={getHeroData.data?.data?.[0]?.title || "Full stack developer"}
                 />
+              ) : (
+                <span>{getHeroData.data?.data?.[0]?.title || "Full stack developer"}</span>
               )}
             </div>
 
@@ -90,7 +97,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-             {getHeroData.data?.data[0].description}
+             {getHeroData.data?.data?.[0]?.description ||
+               "Passionate Full Stack Developer and Software Engineer from Bangladesh specializing in JavaScript, React, Next.js, and .NET. Explore my projects, skills, and professional experience."}
             </motion.p>
 
             <motion.div
@@ -105,6 +113,7 @@ export default function HeroSection() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={link.label}
                   className={`w-10 h-10 flex items-center justify-center rounded-full ${link.bgColor} text-white ${link.hoverBgColor} transition shadow-md`}
                 >
                   <link.icon size={18} />

@@ -105,8 +105,11 @@ export default function ProjectsSection() {
 
       <div className="relative w-full">
         {isLoading ? (
-          <div className="h-screen flex items-center justify-center px-8">
+          <div className="h-screen flex items-center justify-center px-8 relative">
             <Skeleton className="h-[480px] w-full max-w-5xl bg-white/5 rounded-[2.5rem]" />
+            <span className="sr-only">
+              Featured full stack and frontend web applications developed by Mehedi Hasan Shishir with React, Next.js, and modern APIs.
+            </span>
           </div>
         ) : isError ? (
           <div className="h-screen flex items-center justify-center text-red-400">

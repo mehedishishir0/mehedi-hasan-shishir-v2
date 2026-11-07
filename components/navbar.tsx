@@ -52,7 +52,7 @@ export default function Navbar() {
           >
             <Image
               src="/logo.png"
-              alt="Logo"
+              alt="Mehedi Hasan Shishir Logo"
               width={40}
               height={40}
               className="inline-block mr-2"

@@ -27,7 +27,7 @@ export default function TimelineSection() {
   });
 
   return (
-    <section id="about" className="relative py-24 px-4 bg-[#030712]">
+    <section id="timeline" className="relative py-24 px-4 bg-[#030712]">
       <div className="container  mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">My  Journey</h2>
@@ -49,7 +49,12 @@ export default function TimelineSection() {
 
           <div className="space-y-20 w-full">
             {isLoading ? (
-               <Skeleton className="h-[200px] w-full bg-white/5 rounded-3xl" />
+               <div className="space-y-4">
+                 <Skeleton className="h-[200px] w-full bg-white/5 rounded-3xl" />
+                 <span className="sr-only">
+                   Professional career experience, education, and milestones of Mehedi Hasan Shishir.
+                 </span>
+               </div>
             ) : (
               timelineData.map((item: any, index: number) => {
                 const isLeft = index % 2 === 0;

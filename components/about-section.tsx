@@ -310,7 +310,7 @@ export default function AboutSection() {
                   >
                     <Image
                       src={images[currentImageIndex]?.url || "/placeholder.svg"}
-                      alt="About Image"
+                      alt="Mehedi Hasan Shishir - Full Stack Developer Profile"
                       fill
                       className="object-cover"
                       priority
