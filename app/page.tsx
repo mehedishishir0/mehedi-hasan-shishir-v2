@@ -88,7 +88,7 @@ export default function Home() {
         <TechnologySection1/>
         </section>
 
-        <section data-scroll-section data-scroll-speed="2">
+        <section data-scroll-section>
           <ProjectsSection />
         </section>
 
