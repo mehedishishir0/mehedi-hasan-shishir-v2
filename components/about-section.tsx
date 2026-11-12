@@ -195,6 +195,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useAbout } from "@/hooks/ApiCall";
 import { motion, AnimatePresence } from "framer-motion";
+import DitherVeil from "./DitherVeil";
 
 export default function AboutSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -297,35 +298,39 @@ export default function AboutSection() {
           >
             <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-500 to-teal-500 rounded-[2.5rem] blur opacity-20" />
 
-            <Card className="overflow-hidden relative bg-gray-900 border-white/10 p-2 rounded-[2rem] shadow-2xl h-full">
+            <Card className="group overflow-hidden relative bg-gray-900 border-white/10 p-2 rounded-[2rem] shadow-2xl h-full">
               <div className="relative h-full min-h-[600px] rounded-[1.5rem] overflow-hidden bg-black">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentImageIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={images[currentImageIndex]?.url || "/placeholder.svg"}
-                      alt="Mehedi Hasan Shishir - Full Stack Developer Profile"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </motion.div>
-                </AnimatePresence>
+                <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+                  <DitherVeil
+                    src={images[currentImageIndex]?.url || "https://images.unsplash.com/photo-1737071371043-761e02b1ef95?q=80&w=1400&auto=format&fit=crop"}
+                    pattern="floyd"
+                    pixelSize={2}
+                    inkColor="#120f17"
+                    paperColor="#f4f1ea"
+                    revealRadius={200}
+                    softness={0.6}
+                    linger={1}
+                    fit="contain"
+                    rimColor="#a78bfa"
+                    palette="duotone"
+                    levels={2}
+                    contrast={1.15}
+                    brightness={0}
+                    rim={0}
+                    reverse={false}
+                    wander={false}
+                    clickBurst
+                  />
+                </div>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
                 {images.length > 1 && (
-                  <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-12 w-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/20"
+                      className="h-12 w-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 pointer-events-auto"
                       onClick={goToPrevious}
                     >
                       <ChevronLeft className="h-6 w-6" />
@@ -334,7 +339,7 @@ export default function AboutSection() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-12 w-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/20"
+                      className="h-12 w-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 pointer-events-auto"
                       onClick={goToNext}
                     >
                       <ChevronRight className="h-6 w-6" />
